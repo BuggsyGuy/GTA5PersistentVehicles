@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>GTA5PersistentVehicles</AssemblyName>
+    <RootNamespace>GTA5PersistentVehicles</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <!-- Set ScriptHookVDotNetPath to the folder containing ScriptHookVDotNet3.dll. -->
+  <PropertyGroup>
+    <ScriptHookVDotNetPath Condition="'$(ScriptHookVDotNetPath)' == ''">$(MSBuildThisFileDirectory)lib</ScriptHookVDotNetPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ScriptHookVDotNet3">
+      <HintPath>$(ScriptHookVDotNetPath)\ScriptHookVDotNet3.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CopyModFiles" AfterTargets="Build" Condition="Exists('$(TargetDir)')">
+    <Copy SourceFiles="$(ProjectDir)Settings.ini" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

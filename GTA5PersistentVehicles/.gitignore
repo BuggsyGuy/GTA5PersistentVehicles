@@ -1,0 +1,8 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+GTA5PersistentVehicles.log
+Data/vehicles.xml
+lib/ScriptHookVDotNet3.dll
